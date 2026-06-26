@@ -1,38 +1,59 @@
-# NASA C-MAPSS Engine Health Monitoring Dashboard
-**MCT-341L Final Project | Roll No: 2023-MC-67**
+# NASA C-MAPSS Turbofan Engine Health Monitoring
 
-## Dataset
-NASA C-MAPSS Turbofan Engine Degradation Simulation — 160,359 flight 
-cycle records from 708 simulated jet engines across 4 sub-datasets.
+End-to-end predictive maintenance pipeline built on the NASA C-MAPSS dataset as part of MCT-341L (Data Science & Analytics), 3rd Year Mechatronics Engineering, UET Lahore (Roll No. 2023-MC-67).
 
-## Installation
+## What This Project Does
+- Predicts **Remaining Useful Life (RUL)** of jet engines in flight cycles using regression
+- Classifies engine **health stage** (Healthy / Degrading / Critical) using Random Forest
+- Applies **K-Means clustering (k=3)** to discover operating condition patterns in PCA space
+- Interactive **Streamlit dashboard** with live sensor input and real-time predictions across 4 tabs
+
+## Tech Stack
+Python · Scikit-learn · Pandas · NumPy · Streamlit · Matplotlib · Seaborn · Joblib
+
+## Project Structure
+├── DSA Project/
+│├── dashboard/
+││├── app.py
+││├── models/              ← download from Google Drive
+│││├── regression_model.pkl
+│││├── classification_model.pkl
+│││├── kmeans_model.pkl
+│││├── pca_model.pkl
+│││├── scaler.pkl
+│││├── feature_columns.json
+│││└── train_stats.json
+││├── data/                ← download from Google Drive
+│││└── cleaned_data.csv
+││└── requirements.txt
+│└── notebook/
+│ └── notebook.ipynb
+
+## How to Run
+**2. Download models & data from Google Drive**  
+📁 [Google Drive — Models & Dataset](https://drive.google.com/drive/folders/1Kugxvb7g2LyUGrqWVKkouvrq5S011KKX?usp=sharing)
+Place files as shown in the project structure above.
+**3. Install dependencies**
 ```bash
 pip install -r requirements.txt
 ```
 
-## How to Run
+**4. Run the dashboard**
 ```bash
-cd dashboard
 streamlit run app.py
 ```
 
-## Tab Descriptions
+## Dataset
+NASA C-MAPSS (Commercial Modular Aero-Propulsion System Simulation)  
+4 sub-datasets: FD001–FD004 across 6 operating conditions and 2 fault modes (HPC degradation, HPC + Fan degradation)  
+128,287 training samples · 27 features after engineering
 
-**Tab A — Dataset Overview**
-Browse the cleaned dataset, view per-column distributions with 
-interactive selector, and examine the full correlation heatmap.
+## Health Stage Thresholds
+| Stage | RUL |
+|-------|-----|
+| 🟢 Healthy | > 80 cycles |
+| 🟡 Degrading | 30 – 80 cycles |
+| 🔴 Critical | < 30 cycles |
 
-**Tab B — Exploratory Analysis**
-Select any two features for a scatter plot with optional trend line 
-and colour-by-class. Filter data to a numeric range using a slider 
-to zoom into subpopulations.
-
-**Tab C — Model Prediction**
-Enter engine sensor readings using number inputs to get simultaneous 
-RUL prediction (Ridge Regression) and health stage classification 
-(Random Forest) with confidence probabilities.
-
-**Tab D — Cluster Explorer**
-Visualise K-Means clusters (k=3) in PCA space. Select individual 
-clusters to highlight and compare their feature profiles against the 
-overall dataset mean.
+## Key Finding
+K-Means clustering discovered **operating condition clusters** rather than health stage clusters — demonstrating that altitude × Mach × throttle combinations dominate sensor variance more than engine degradation does.

@@ -12,6 +12,7 @@ End-to-end predictive maintenance pipeline built on the NASA C-MAPSS dataset as 
 Python · Scikit-learn · Pandas · NumPy · Streamlit · Matplotlib · Seaborn · Joblib
 
 ## Project Structure
+```
 nasa-cmapss-engine-health/
 ├── DSA Project/
 │   ├── dashboard/
@@ -28,7 +29,8 @@ nasa-cmapss-engine-health/
 │   │   │   └── cleaned_data.csv
 │   │   └── requirements.txt
 │   └── notebook/
-│       └── FinalProject-2023-MC-67.ipynb
+│       └── notebook.ipynb
+```
 
 ## How to Run
 **2. Download models & data from Google Drive**  

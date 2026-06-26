@@ -1,6 +1,6 @@
 # NASA C-MAPSS Turbofan Engine Health Monitoring
 
-End-to-end predictive maintenance pipeline built on the NASA C-MAPSS dataset as part of MCT-341L (Data Science & Analytics), 3rd Year Mechatronics Engineering, UET Lahore (Roll No. 2023-MC-67).
+End-to-end predictive maintenance pipeline built on the NASA C-MAPSS dataset as part of Data Science & Analytics, 3rd Year Mechatronics Engineering, UET Lahore.
 
 ## What This Project Does
 - Predicts **Remaining Useful Life (RUL)** of jet engines in flight cycles using regression
